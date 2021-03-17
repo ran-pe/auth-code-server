@@ -19,6 +19,5 @@ public class UserController {
         profile.setEmail(email);
 
         return ResponseEntity.ok(profile);
-
     }
 }

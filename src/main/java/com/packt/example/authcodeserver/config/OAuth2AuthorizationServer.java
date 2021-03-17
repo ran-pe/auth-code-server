@@ -20,6 +20,19 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
         endpoints.authenticationManager(authenticationManager);
     }
 
+    // 리프레시 토큰 지원
+    @Override
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        clients.inMemory()
+                .withClient("clientapp")
+                .secret("123456")
+                .authorizedGrantTypes("authorization_code", "password", "refresh_token")
+                .accessTokenValiditySeconds(120)
+                .scopes("read_profile", "read_contacts");
+    }
+
+/*
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
@@ -36,5 +49,6 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
                 .scopes("admin");                                 // 4. client_credentials 방식
     }
 
+*/
 
 }

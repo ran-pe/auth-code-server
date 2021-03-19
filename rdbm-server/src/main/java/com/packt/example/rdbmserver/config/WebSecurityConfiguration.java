@@ -21,6 +21,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
             .and()
+                .antMatcher("/user/**")
+                .httpBasic()
+            .and()
                 .csrf().ignoringAntMatchers("/h2-console/**")
             .and()
                 .headers().addHeaderWriter(
